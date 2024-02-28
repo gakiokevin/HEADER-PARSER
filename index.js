@@ -15,7 +15,12 @@ res.render('home',{welcome:'add whoami on the url to view results'})
 })
 app.get('/api/whoami',(req,res)=>{
 
-res.render('index',{software:req.headers['user-agent'],language:req.headers['accept-language'],ipaddress:req.socket.remoteAddress})  
+  const data = {
+    software: req.headers['user-agent'],
+    language: req.headers['accept-language'],
+    ipaddress: req.headers['x-forwarded-for'] || req.socket.remoteAddress,
+  };
+  res.json(data)
 })
 
 app.listen(PORT,()=>console.log('Server is on fire'))

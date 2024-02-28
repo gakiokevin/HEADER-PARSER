@@ -4,6 +4,14 @@ html
 
   body
     h1 HEADER PARSER
-    p= software
-    p= language
-    p= ipaddress
+
+    
+    script.
+      var jsonData = !{JSON.stringify(data)};
+
+    p Software: #{data.software}
+    p Language: #{data.language}
+    p IP Address: #{data.ipaddress}
+
+    script.
+      console.log(jsonData);
